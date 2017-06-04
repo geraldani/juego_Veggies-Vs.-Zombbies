@@ -1,2 +1,3 @@
-# juego_Veggies-Vs.-Zombbies
-Juego hecho en HTML5 y javascript usando el framework Quintus (para juegos en 2D)
+# Juego Veggies Vs. Zombbies
+
+Juego hecho en HTML5 y JavaScript usando el framework Quintus (para juegos en 2D)
