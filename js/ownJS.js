@@ -2,20 +2,33 @@
 window.addEventListener("load", function(){
 	//se inicializa el framework
 	var Q = window.Q = Quintus({development: true})
-	.include("Sprites, Scenes")
+	.include("Sprites, Scenes, 2D")
 	.setup({
 		//tamaño de la pantalla
 		width: 1080, 
 		height: 720,
 		scaleToFit: true //opcion para que se auto-escale dependiendo del tamaño de la pantalla
 	});
+	//desactivando la gravedad
+	Q.gravityX = 0;
+	Q.gravityY = 0;
+
+	//Constantes
+	Q.SPRITE_SUN = 2;
+	Q.SPRITE_ZOMBIE = 4;
+	Q.SPRITE_PLANT = 8;
+	Q.SPRITE_BULLET = 16;
+	Q.SPRITE_GROUND = 32;
 
 	//creando una clase, o expandiedno la clase sprite
 	Q.Sprite.extend("Zombie", {
 		init: function(p) {//el constructor de la clase
 			this._super(p, {
-				asset: "zombie4.png"
+				asset: "zombie4.png",
+				type: Q.SPRITE_ZOMBIE,
+				vx: -20
 			});
+			this.add("2d");
 		}
 	});
 
@@ -24,7 +37,8 @@ window.addEventListener("load", function(){
 		var sprite1 = new Q.Sprite({//crea un sprite
 			x: 1080/2, // se especifica la pocision desde donde partira la imagen de fondo
 			y: 720/2, 
-			asset: "background.png" //imagen de fondo (no se indica el nombre de la carpeta porque automaticamente Quintus sabes que la caprta se llama "images", este es el nombre que debe llevar la carpeta, de otro modo no funciona)
+			asset: "background.png", //imagen de fondo (no se indica el nombre de la carpeta porque automaticamente Quintus sabes que la caprta se llama "images", este es el nombre que debe llevar la carpeta, de otro modo no funciona)
+			type: Q.SPRITE_GROUND
 		});
 
 		//creando instancias de la clase zombie
